@@ -17,6 +17,8 @@
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/languages.css">
+  <link rel="stylesheet" href="./assets/css/auth.css">
+  <link rel="stylesheet" href="./assets/css/admin-panel.css">
 
   <!-- 
     - google font link
@@ -34,6 +36,9 @@
 
 <body id="top">
 
+  <!-- Mouse Trail Effect -->
+  <canvas id="mouseTrail"></canvas>
+
   <!-- 
     - #HEADER
   -->
@@ -42,34 +47,42 @@
     <div class="container">
 
       <h1>
-        <a href="#" class="logo">Haven</a>
+        <a href="#/" class="logo">Haven</a>
       </h1>
 
       <nav class="navbar container" data-navbar>
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link" data-nav-link data-i18n="home">Home</a>
+            <a href="#/home" class="navbar-link" data-nav-link data-i18n="home">Home</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#services" class="navbar-link" data-nav-link data-i18n="services">Services</a>
+            <a href="#/services" class="navbar-link" data-nav-link data-i18n="services">Services</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#features" class="navbar-link" data-nav-link data-i18n="features">Features</a>
+            <a href="#/features" class="navbar-link" data-nav-link data-i18n="features">Features</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#about" class="navbar-link" data-nav-link data-i18n="about">About</a>
+            <a href="#/about" class="navbar-link" data-nav-link data-i18n="about">About</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#stats" class="navbar-link" data-nav-link data-i18n="stats">Stats</a>
+            <a href="#/stats" class="navbar-link" data-nav-link data-i18n="stats">Stats</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#contact" class="navbar-link" data-nav-link data-i18n="contact">Contact Us</a>
+            <a href="#/rules" class="navbar-link" data-nav-link>Regolamento</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#/sponsors" class="navbar-link" data-nav-link>Sponsor</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="#/contact" class="navbar-link" data-nav-link data-i18n="contact">Contact Us</a>
           </li>
 
         </ul>
@@ -80,6 +93,9 @@
         <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
         <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
       </div>
+
+      <!-- Login Button -->
+      <button class="btn btn-secondary" id="loginBtn" onclick="openLoginModal()">Login</button>
 
       <form action="/discord">
         <button class="btn btn-secondary" data-i18n="join">Join</button>
@@ -93,10 +109,150 @@
     </div>
   </header>
 
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <div id="loginTypeSelect" class="login-type-select">
+        <h2>Scegli il tipo di login</h2>
+        <button class="login-type-btn" onclick="selectLoginType('user')">Login Utente</button>
+        <button class="login-type-btn" onclick="selectLoginType('staff')">Login Staff</button>
+      </div>
 
+      <!-- User Login Form -->
+      <div id="userLoginForm" class="login-form" style="display:none;">
+        <h2>Login Utente Discord</h2>
+        <input type="text" id="discordId" placeholder="Discord ID" required>
+        <input type="text" id="discordUsername" placeholder="Username" required>
+        <input type="text" id="discordNickname" placeholder="Nickname (Nickname del server)" required>
+        <button onclick="loginUser()">Accedi come Utente</button>
+      </div>
 
+      <!-- Staff Login Form -->
+      <div id="staffLoginForm" class="login-form" style="display:none;">
+        <h2>Login Staff</h2>
+        <input type="text" id="staffUsername" placeholder="Nome Utente" required>
+        <input type="password" id="staffPassword" placeholder="Password" required>
+        <button onclick="loginStaff()">Accedi come Staff</button>
+      </div>
+    </div>
+  </div>
 
-  <main>
+  <!-- Admin Panel (Hidden by default) -->
+  <div id="adminPanel" class="admin-panel" style="display:none;">
+    <div class="admin-sidebar">
+      <h3>Admin Panel</h3>
+      <button onclick="showAdminSection('dashboard')" class="admin-nav-btn active">Dashboard</button>
+      <button onclick="showAdminSection('announcements')" class="admin-nav-btn">Annunci</button>
+      <button onclick="showAdminSection('rules')" class="admin-nav-btn">Regole</button>
+      <button onclick="showAdminSection('faq')" class="admin-nav-btn">FAQ</button>
+      <button onclick="showAdminSection('embeds')" class="admin-nav-btn">Embed Discord</button>
+      <button onclick="showAdminSection('perks')" class="admin-nav-btn">Perks</button>
+      <button onclick="showAdminSection('stats')" class="admin-nav-btn">Statistiche</button>
+      <button onclick="showAdminSection('users')" class="admin-nav-btn">Gestione Utenti</button>
+      <button onclick="logout()" class="admin-nav-btn logout">Logout</button>
+    </div>
+    <div class="admin-content">
+      <!-- Dashboard Section -->
+      <div id="dashboardSection" class="admin-section active">
+        <h2>Dashboard</h2>
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <h3>Membri Online</h3>
+            <p id="onlineMembers">1250</p>
+          </div>
+          <div class="stat-card">
+            <h3>Totale Membri</h3>
+            <p id="totalMembers">3060</p>
+          </div>
+          <div class="stat-card">
+            <h3>Messaggi Oggi</h3>
+            <p id="messagestoday">892</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Announcements Section -->
+      <div id="announcementsSection" class="admin-section" style="display:none;">
+        <h2>Crea Annuncio</h2>
+        <form onsubmit="createAnnouncement(event)">
+          <input type="text" id="announcementTitle" placeholder="Titolo Annuncio" required>
+          <textarea id="announcementContent" placeholder="Contenuto Annuncio" required></textarea>
+          <input type="url" id="webhookUrl" placeholder="Webhook URL Discord" required>
+          <button type="submit">Invia Annuncio</button>
+        </form>
+        <div id="announcementsList"></div>
+      </div>
+
+      <!-- Rules Section -->
+      <div id="rulesSection" class="admin-section" style="display:none;">
+        <h2>Gestione Regole</h2>
+        <form onsubmit="addRule(event)">
+          <input type="text" id="ruleNumber" placeholder="Numero Regola" required>
+          <textarea id="ruleContent" placeholder="Contenuto Regola" required></textarea>
+          <button type="submit">Aggiungi Regola</button>
+        </form>
+        <div id="rulesList"></div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div id="faqSection" class="admin-section" style="display:none;">
+        <h2>Gestione FAQ</h2>
+        <form onsubmit="addFAQ(event)">
+          <input type="text" id="faqQuestion" placeholder="Domanda" required>
+          <textarea id="faqAnswer" placeholder="Risposta" required></textarea>
+          <button type="submit">Aggiungi FAQ</button>
+        </form>
+        <div id="faqList"></div>
+      </div>
+
+      <!-- Embeds Section -->
+      <div id="embedsSection" class="admin-section" style="display:none;">
+        <h2>Crea Embed Discord</h2>
+        <form onsubmit="createEmbed(event)">
+          <input type="text" id="embedTitle" placeholder="Titolo" required>
+          <textarea id="embedDescription" placeholder="Descrizione" required></textarea>
+          <input type="color" id="embedColor" placeholder="Colore">
+          <input type="url" id="embedImage" placeholder="URL Immagine">
+          <input type="url" id="embedWebhook" placeholder="Webhook URL Discord" required>
+          <button type="submit">Invia Embed</button>
+        </form>
+      </div>
+
+      <!-- Perks Section -->
+      <div id="perksSection" class="admin-section" style="display:none;">
+        <h2>Gestione Perks</h2>
+        <form onsubmit="addPerk(event)">
+          <input type="text" id="perkName" placeholder="Nome Perk" required>
+          <textarea id="perkDescription" placeholder="Descrizione Perk" required></textarea>
+          <input type="text" id="perkIcon" placeholder="Emoji/Icon" required>
+          <button type="submit">Aggiungi Perk</button>
+        </form>
+        <div id="perksList"></div>
+      </div>
+
+      <!-- Stats Section -->
+      <div id="statsSection" class="admin-section" style="display:none;">
+        <h2>Modifica Statistiche</h2>
+        <form onsubmit="updateStats(event)">
+          <input type="number" id="statActiveMembers" placeholder="Membri Attivi" required>
+          <input type="number" id="statTotalMembers" placeholder="Totale Membri" required>
+          <input type="number" id="statChannels" placeholder="Canali" required>
+          <input type="number" id="statRoles" placeholder="Ruoli" required>
+          <button type="submit">Salva Statistiche</button>
+        </form>
+      </div>
+
+      <!-- Users Management Section -->
+      <div id="usersSection" class="admin-section" style="display:none;">
+        <h2>Gestione Utenti</h2>
+        <div id="usersList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main id="mainContent">
     <article>
 
       <!-- 
@@ -463,7 +619,7 @@
 
             <li class="stats-item purple">
               <h3 class="item-title">
-                <span data-i18n="activeCount">2000</span>
+                <span id="activeCount" data-i18n="activeCount">1250</span>
                 <span class="span" data-i18n="memberCount">members</span>
               </h3>
 
@@ -472,7 +628,7 @@
 
             <li class="stats-item red">
               <h3 class="item-title">
-                <span data-i18n="totalCount">3060</span>
+                <span id="totalCount" data-i18n="totalCount">3060</span>
                 <span class="span" data-i18n="memberCount">members</span>
               </h3>
 
@@ -481,7 +637,7 @@
 
             <li class="stats-item green">
               <h3 class="item-title">
-                <span data-i18n="channelCount">20+</span>
+                <span id="channelCount" data-i18n="channelCount">20+</span>
                 <span class="span" data-i18n="channels">channels</span>
               </h3>
 
@@ -490,7 +646,7 @@
 
             <li class="stats-item yellow">
               <h3 class="item-title">
-                <span data-i18n="rolesCount">50+</span>
+                <span id="rolesCount" data-i18n="rolesCount">50+</span>
                 <span class="span" data-i18n="roles">roles</span>
               </h3>
 
@@ -502,33 +658,24 @@
         </div>
       </section>
 
-
-
-
-      <!-- 
-        - #SUPPORT
-      -->
-
-      <section class="section support" id="contact">
-        <div class="container">
-
-          <div class="support-content">
-            <h2 class="h2 section-title" data-i18n="supportTitle">24/7 Customer Support</h2>
-
-            <p class="section-text" data-i18n="supportDescription">
-              Our team is here to provide you with personalized and outstanding service. We also offer a range of
-              self-learning tools
-              in our support center:
-            </p>
-          </div>
-
-          <a href="/discord" class="btn btn-primary" data-i18n="joinUs">Join Us</a>
-
-        </div>
-      </section>
-
     </article>
   </main>
+
+  <!-- Rules Page (Hidden by default) -->
+  <div id="rulesPage" class="page-content" style="display:none;">
+    <div class="container">
+      <h1>Regolamento del Server</h1>
+      <div id="rulesContent"></div>
+    </div>
+  </div>
+
+  <!-- Sponsors Page (Hidden by default) -->
+  <div id="sponsorsPage" class="page-content" style="display:none;">
+    <div class="container">
+      <h1>Sponsor</h1>
+      <div id="sponsorsContent" class="sponsors-grid"></div>
+    </div>
+  </div>
 
 
 
@@ -550,7 +697,7 @@
         <ul class="footer-bottom-list">
 
           <li>
-            <a href="#" class="footer-bottom-link" data-i18n="privacyPolicy">Privacy Policy</a>
+            <a href="#/rules" class="footer-bottom-link" data-i18n="privacyPolicy">Privacy Policy</a>
           </li>
 
           <li>
@@ -558,7 +705,7 @@
           </li>
 
           <li>
-            <a href="#" class="footer-bottom-link" data-i18n="termsConditions">Terms & Conditions</a>
+            <a href="#/rules" class="footer-bottom-link" data-i18n="termsConditions">Terms & Conditions</a>
           </li>
 
         </ul>
@@ -587,6 +734,10 @@
   -->
   <script src="./assets/js/script.js" defer></script>
   <script src="./assets/js/languages.js" defer></script>
+  <script src="./assets/js/auth.js" defer></script>
+  <script src="./assets/js/admin.js" defer></script>
+  <script src="./assets/js/router.js" defer></script>
+  <script src="./assets/js/mouse-trail.js" defer></script>
 
   <!-- 
     - ionicon link
