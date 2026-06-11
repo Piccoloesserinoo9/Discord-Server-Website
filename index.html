@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aromax Development</title>
+  <title data-i18n="title">Haven</title>
 
   <!-- 
     - favicon
@@ -16,6 +16,7 @@
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/languages.css">
 
   <!-- 
     - google font link
@@ -41,41 +42,49 @@
     <div class="container">
 
       <h1>
-        <a href="#" class="logo">Aromax</a>
+        <a href="#" class="logo">Haven</a>
       </h1>
 
       <nav class="navbar container" data-navbar>
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link" data-nav-link>Home</a>
+            <a href="#home" class="navbar-link" data-nav-link data-i18n="home">Home</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#services" class="navbar-link" data-nav-link>Services</a>
+            <a href="#services" class="navbar-link" data-nav-link data-i18n="services">Services</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#features" class="navbar-link" data-nav-link>Features</a>
+            <a href="#features" class="navbar-link" data-nav-link data-i18n="features">Features</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#about" class="navbar-link" data-nav-link>About</a>
+            <a href="#about" class="navbar-link" data-nav-link data-i18n="about">About</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#stats" class="navbar-link" data-nav-link>Stats</a>
+            <a href="#stats" class="navbar-link" data-nav-link data-i18n="stats">Stats</a>
           </li>
 
           <li class="navbar-item">
-            <a href="#contact" class="navbar-link" data-nav-link>Contact Us</a>
+            <a href="#contact" class="navbar-link" data-nav-link data-i18n="contact">Contact Us</a>
           </li>
 
         </ul>
       </nav>
-<form action="/discord">
-      <button class="btn btn-secondary">Join</button>
-</form>
+
+      <!-- Language Switcher -->
+      <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="it" onclick="setLanguage('it')">IT</button>
+      </div>
+
+      <form action="/discord">
+        <button class="btn btn-secondary" data-i18n="join">Join</button>
+      </form>
+
       <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggle-btn>
         <ion-icon name="menu-outline" class="menu-icon"></ion-icon>
         <ion-icon name="close-outline" class="close-icon"></ion-icon>
@@ -83,7 +92,6 @@
 
     </div>
   </header>
-
 
 
 
@@ -99,53 +107,49 @@
         <div class="container">
 
           <figure class="hero-banner">
-            <img src="./assets/images/aromax.png"  loading="lazy" alt="hero banner"
+            <img src="./assets/images/aromax.png" loading="lazy" alt="hero banner"
               class="w-100">
           </figure>
 
           <div class="hero-content">
 
-            <h2 class="h1 hero-title">Aromax Development</h2>
+            <h2 class="h1 hero-title" data-i18n="heroTitle">Haven</h2>
 
-            <p class="section-text">
+            <p class="section-text" data-i18n="heroDescription">
               A community of developers and students where you can interact and make the team. Explore the science-tech related projects and works.
             </p>
-<br>
-<!--             <form action="/discord" class="hero-form">
-          
-              <button type="submit" class="btn btn-primary">Join Now</button>
-            </form> -->
+            <br>
 
             <ul class="hero-list">
 
               <li class="hero-item">
                 <img src="./assets/images/check-circle.svg" width="16" height="16" loading="lazy" alt="Checkmark icon">
 
-                <span class="span">Active Chat</span>
+                <span class="span" data-i18n="activeChat">Active Chat</span>
               </li>
 
               <li class="hero-item">
                 <img src="./assets/images/check-circle.svg" width="16" height="16" loading="lazy" alt="Checkmark icon">
 
-                <span class="span">Ticketing</span>
+                <span class="span" data-i18n="ticketing">Ticketing</span>
               </li>
 
               <li class="hero-item">
                 <img src="./assets/images/check-circle.svg" width="16" height="16" loading="lazy" alt="Checkmark icon">
 
-                <span class="span">Funny Bots</span>
+                <span class="span" data-i18n="funnyBots">Funny Bots</span>
               </li>
 
               <li class="hero-item">
                 <img src="./assets/images/check-circle.svg" width="16" height="16" loading="lazy" alt="Checkmark icon">
 
-                <span class="span">Advertisement</span>
+                <span class="span" data-i18n="advertisement">Advertisement</span>
               </li>
 
               <li class="hero-item">
                 <img src="./assets/images/check-circle.svg" width="16" height="16" loading="lazy" alt="Checkmark icon">
 
-                <span class="span">Giveaways</span>
+                <span class="span" data-i18n="giveaways">Giveaways</span>
               </li>
 
             </ul>
@@ -158,7 +162,6 @@
 
 
 
-
       <!-- 
         - #SERVICE
       -->
@@ -166,10 +169,10 @@
       <section class="section service" id="services">
         <div class="container">
 
-          <h2 class="h2 section-title">Services</h2>
+          <h2 class="h2 section-title" data-i18n="servicesTitle">Services</h2>
 
-          <p class="section-text">
-           We provide you different services to you like
+          <p class="section-text" data-i18n="servicesDescription">
+            We provide you different services to you like
           </p>
 
           <ul class="service-list">
@@ -185,18 +188,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Support</a>
+                    <a href="#" class="card-title" data-i18n="supportTitle">Support</a>
                   </h3>
 
-                  <p class="card-text">
+                  <p class="card-text" data-i18n="supportText">
                     We give 24/7 active support to you. You may ask any kind of help realted codings or any others. You can  also report members.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -214,18 +211,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Engagement</a>
+                    <a href="#" class="card-title" data-i18n="engagementTitle">Engagement</a>
                   </h3>
 
-                  <p class="card-text">
-                   We have active chats & you can enjoy chating with our members. You can make friends and work together.
+                  <p class="card-text" data-i18n="engagementText">
+                    We have active chats & you can enjoy chating with our members. You can make friends and work together.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -243,18 +234,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Games & Events</a>
+                    <a href="#" class="card-title" data-i18n="gamesEventsTitle">Games & Events</a>
                   </h3>
 
-                  <p class="card-text">
+                  <p class="card-text" data-i18n="gamesEventsText">
                     We organize differents events in stage channel. Also, we play many games together with our members. Winner will get awesome gift.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -269,7 +254,6 @@
 
 
 
-
       <!-- 
         - #FEATURES
       -->
@@ -279,11 +263,10 @@
 
           <div class="features-content">
 
-            <h2 class="h2 section-title">Our Awesome Features To Serve You</h2>
+            <h2 class="h2 section-title" data-i18n="featuresTitle">Our Awesome Features To Serve You</h2>
 
-            <p class="section-text">
-              We make it easiest for you
-              through the different facilities 
+            <p class="section-text" data-i18n="featuresDescription">
+              We make it easiest for you through the different facilities
             </p>
 
             <ul class="features-list">
@@ -292,28 +275,28 @@
                 <img src="./assets/images/features-icon-1.svg" width="26" height="26" loading="lazy" aria-hidden="true"
                   class="item-icon">
 
-                <h3 class="item-title">Promote your social account</h3>
+                <h3 class="item-title" data-i18n="promoteAccount">Promote your social account</h3>
               </li>
 
               <li class="features-item">
                 <img src="./assets/images/features-icon-2.svg" width="26" height="26" loading="lazy" aria-hidden="true"
                   class="item-icon">
 
-                <h3 class="item-title">Accept your suggestions</h3>
+                <h3 class="item-title" data-i18n="acceptSuggestions">Accept your suggestions</h3>
               </li>
 
               <li class="features-item">
                 <img src="./assets/images/features-icon-3.svg" width="26" height="26" loading="lazy" aria-hidden="true"
                   class="item-icon">
 
-                <h3 class="item-title">Provide you free doamin</h3>
+                <h3 class="item-title" data-i18n="freeDomain">Provide you free doamin</h3>
               </li>
 
               <li class="features-item">
                 <img src="./assets/images/features-icon-4.svg" width="26" height="26" loading="lazy" aria-hidden="true"
                   class="item-icon">
 
-                <h3 class="item-title">Open Source Code</h3>
+                <h3 class="item-title" data-i18n="openSource">Open Source Code</h3>
               </li>
 
             </ul>
@@ -340,7 +323,6 @@
 
 
 
-
       <!-- 
         - #ABOUT
       -->
@@ -348,10 +330,10 @@
       <section class="section about" id="about">
         <div class="container">
 
-          <h2 class="h2 section-title">What We Do</h2>
+          <h2 class="h2 section-title" data-i18n="aboutTitle">What We Do</h2>
 
-          <p class="section-text">
-           Many peoples are bored staying home and doing nothing. Our goal is to create an interactive community where you can create and build ideas in the science and technology sectors. 
+          <p class="section-text" data-i18n="aboutDescription">
+            Many peoples are bored staying home and doing nothing. Our goal is to create an interactive community where you can create and build ideas in the science and technology sectors.
           </p>
 
           <ul class="about-list">
@@ -367,18 +349,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Ticket System</a>
+                    <a href="#" class="card-title" data-i18n="ticketSystem">Ticket System</a>
                   </h3>
 
-                  <p class="card-text">
+                  <p class="card-text" data-i18n="ticketText">
                     We accept all the ticket you have opened and review it.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -396,18 +372,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Workflow</a>
+                    <a href="#" class="card-title" data-i18n="workflow">Workflow</a>
                   </h3>
 
-                  <p class="card-text">
-                  We will help you to complete your project and solve your errors.
+                  <p class="card-text" data-i18n="workflowText">
+                    We will help you to complete your project and solve your errors.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -425,18 +395,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Youtube Video</a>
+                    <a href="#" class="card-title" data-i18n="youtubeVideo">Youtube Video</a>
                   </h3>
 
-                  <p class="card-text">
-                    We will make installization tutorial of open source code. 
+                  <p class="card-text" data-i18n="youtubeText">
+                    We will make installization tutorial of open source code.
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -454,18 +418,12 @@
                 <div class="card-content">
 
                   <h3 class="h3">
-                    <a href="#" class="card-title">Customer Feedback Surveys</a>
+                    <a href="#" class="card-title" data-i18n="customerFeedback">Customer Feedback Surveys</a>
                   </h3>
 
-                  <p class="card-text">
+                  <p class="card-text" data-i18n="customerFeedbackText">
                     We will review and make our community better by seeing feedback
                   </p>
-
-<!--                   <a href="#" class="btn-link">
-                    <span class="span">Learn More</span>
-
-                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                  </a> -->
 
                 </div>
 
@@ -475,9 +433,9 @@
           </ul>
 
           <p class="section-text">
-            We do lots of new things make sure to
+            <span data-i18n="doLots">We do lots of new things make sure to</span>
             <a href="/discord" class="btn-link">
-              <span class="span">join our server</span>
+              <span class="span" data-i18n="joinServer">join our server</span>
 
               <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
             </a>
@@ -485,7 +443,6 @@
 
         </div>
       </section>
-
 
 
 
@@ -506,49 +463,44 @@
 
             <li class="stats-item purple">
               <h3 class="item-title">
-                2000
-                <span class="span">members</span>
+                <span data-i18n="activeCount">2000</span>
+                <span class="span" data-i18n="memberCount">members</span>
               </h3>
 
-              <p class="stats-text">Active Members</p>
+              <p class="stats-text" data-i18n="activeMembers">Active Members</p>
             </li>
 
             <li class="stats-item red">
               <h3 class="item-title">
-                3060
-                <span class="span">members</span>
+                <span data-i18n="totalCount">3060</span>
+                <span class="span" data-i18n="memberCount">members</span>
               </h3>
 
-              <p class="stats-text">Total member of our server</p>
+              <p class="stats-text" data-i18n="totalMembers">Total member of our server</p>
             </li>
 
             <li class="stats-item green">
               <h3 class="item-title">
-                20+
-                <span class="span">channels</span>
+                <span data-i18n="channelCount">20+</span>
+                <span class="span" data-i18n="channels">channels</span>
               </h3>
 
-              <p class="stats-text">Text & Voice Chat</p>
+              <p class="stats-text" data-i18n="textVoiceChat">Text & Voice Chat</p>
             </li>
 
             <li class="stats-item yellow">
               <h3 class="item-title">
-                50+
-                <span class="span">roles</span>
+                <span data-i18n="rolesCount">50+</span>
+                <span class="span" data-i18n="roles">roles</span>
               </h3>
 
-              <p class="stats-text">with colors</p>
+              <p class="stats-text" data-i18n="roleColors">with colors</p>
             </li>
 
           </ul>
 
         </div>
       </section>
-
-
-
-
-
 
 
 
@@ -561,16 +513,16 @@
         <div class="container">
 
           <div class="support-content">
-            <h2 class="h2 section-title">24/7 Customer Support</h2>
+            <h2 class="h2 section-title" data-i18n="supportTitle">24/7 Customer Support</h2>
 
-            <p class="section-text">
+            <p class="section-text" data-i18n="supportDescription">
               Our team is here to provide you with personalized and outstanding service. We also offer a range of
               self-learning tools
               in our support center:
             </p>
           </div>
 
-          <a href="/discord" class="btn btn-primary">Join Us</a>
+          <a href="/discord" class="btn btn-primary" data-i18n="joinUs">Join Us</a>
 
         </div>
       </section>
@@ -581,35 +533,32 @@
 
 
 
-
   <!-- 
     - #FOOTER
   -->
 
   <footer class="footer">
 
-    
-
     <div class="footer-bottom">
       <div class="container">
 
         <p class="copyright">
-          &copy; 2022 <span class="span">Aromax</span>. All rights reserved by <a href="#"
+          <span data-i18n="copyright">© 2022</span> <span class="span">Haven</span>. <span data-i18n="allRightsReserved">All rights reserved by</span> <a href="#"
             class="copyright-link">diwasatreya</a>
         </p>
 
         <ul class="footer-bottom-list">
 
           <li>
-            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+            <a href="#" class="footer-bottom-link" data-i18n="privacyPolicy">Privacy Policy</a>
           </li>
 
           <li>
-            <a href="#" class="footer-bottom-link">Security</a>
+            <a href="#" class="footer-bottom-link" data-i18n="security">Security</a>
           </li>
 
           <li>
-            <a href="#" class="footer-bottom-link">Terms & Conditions</a>
+            <a href="#" class="footer-bottom-link" data-i18n="termsConditions">Terms & Conditions</a>
           </li>
 
         </ul>
@@ -618,7 +567,6 @@
     </div>
 
   </footer>
-
 
 
 
@@ -634,11 +582,11 @@
 
 
 
-
   <!-- 
     - custom js link
   -->
   <script src="./assets/js/script.js" defer></script>
+  <script src="./assets/js/languages.js" defer></script>
 
   <!-- 
     - ionicon link
